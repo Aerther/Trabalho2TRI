@@ -31,28 +31,28 @@ class Livro {
 
     // Getters e Setters
 
-    public function setIdLivro(int $idUsuario):void {
-        $this->idUsuario = $idUsuario;
+    public function setIdLivro(int $idLivro):void {
+        $this->idLivro = $idLivro;
     }
 
     public function getIdLivro():int{
-        return $this->idUsuario;
+        return $this->idLivro;
     }
 
-    public function setLinkCapa(string $senha):void{
-        $this->senha = $senha;
+    public function setLinkCapa(string $link_capa):void{
+        $this->link_capa = $link_capa;
     }
 
     public function getLinkCapa():string{
-        return $this->senha;
+        return $this->link_capa;
     }
 
-    public function setTitulo(string $email):void{
-        $this->email = $email;
+    public function setTitulo(string $titulo):void{
+        $this->titulo = $titulo;
     }
 
     public function getTitulo():string{
-        return $this->email;
+        return $this->titulo;
     }
 }
 

@@ -19,9 +19,9 @@ class Usuario {
         $this->senha = password_hash($this->senha, PASSWORD_BCRYPT); 
 
         if(isset($this->idUsuario)) {
-            $sql = "UPDATE usuario SET Email = '{$this->email}' ,Senha = '{$this->senha}',Nome = '{$this->nome}' WHERE idUsuario = {$this->idUsuario}";
+            $sql = "UPDATE usuario SET email = '{$this->email}',senha = '{$this->senha}',nome = '{$this->nome}' WHERE idUsuario = {$this->idUsuario}";
         } else {
-            $sql = "INSERT INTO usuario (Email,Senha,Nome) VALUES ('{$this->email}','{$this->senha}','{$this->nome}')";
+            $sql = "INSERT INTO usuario (email,senha,nome) VALUES ('{$this->email}','{$this->senha}','{$this->nome}')";
         }
 
         return $conexao->executa($sql);
@@ -30,15 +30,15 @@ class Usuario {
     public function authenticate():bool{
         $conexao = new MySQL();
 
-        $sql = "SELECT idUsuario,senha FROM usuario WHERE Email = '{$this->email}'";
+        $sql = "SELECT idUsuario,senha FROM usuario WHERE email = '{$this->email}'";
 
         $resultados = $conexao->consulta($sql);
 
-        if(password_verify($this->senha, $resultados[0]['Senha'])) {
+        if(password_verify($this->senha, $resultados[0]['senha'])) {
             session_start();
 
             $_SESSION['idUsuario'] = $resultados[0]['idUsuario'];
-            $_SESSION['Email'] = $resultados[0]['Email'];
+            $_SESSION['email'] = $resultados[0]['email'];
 
             return true;
         }
