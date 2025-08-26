@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 07/08/2025 às 22:34
+-- Tempo de geração: 21/08/2025 às 21:28
 -- Versão do servidor: 10.4.32-MariaDB
 -- Versão do PHP: 8.2.12
 
@@ -20,8 +20,6 @@ SET time_zone = "+00:00";
 --
 -- Banco de dados: `biblioteca`
 --
-CREATE DATABASE IF NOT EXISTS `biblioteca` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
-USE `biblioteca`;
 
 -- --------------------------------------------------------
 
@@ -64,6 +62,17 @@ INSERT INTO `livros` (`idLivro`, `Link_Capa`, `Titulo`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Estrutura para tabela `livros_favoritos`
+--
+
+CREATE TABLE `livros_favoritos` (
+  `idUsuario` int(11) NOT NULL,
+  `idLivro` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Estrutura para tabela `usuario`
 --
 
@@ -85,6 +94,13 @@ ALTER TABLE `livros`
   ADD PRIMARY KEY (`idLivro`);
 
 --
+-- Índices de tabela `livros_favoritos`
+--
+ALTER TABLE `livros_favoritos`
+  ADD PRIMARY KEY (`idUsuario`,`idLivro`),
+  ADD KEY `idLivro` (`idLivro`);
+
+--
 -- Índices de tabela `usuario`
 --
 ALTER TABLE `usuario`
@@ -104,7 +120,18 @@ ALTER TABLE `livros`
 -- AUTO_INCREMENT de tabela `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `idUsuario` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idUsuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- Restrições para tabelas despejadas
+--
+
+--
+-- Restrições para tabelas `livros_favoritos`
+--
+ALTER TABLE `livros_favoritos`
+  ADD CONSTRAINT `livros_favoritos_ibfk_1` FOREIGN KEY (`idUsuario`) REFERENCES `usuario` (`idUsuario`),
+  ADD CONSTRAINT `livros_favoritos_ibfk_2` FOREIGN KEY (`idLivro`) REFERENCES `livros` (`idLivro`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

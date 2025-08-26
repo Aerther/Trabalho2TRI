@@ -7,13 +7,25 @@ class Usuario {
     private string $senha;
     private string $nome;
     
-    public function __construct(string $email, string $senha, string $nome) {
+    public function __construct(string $email, string $senha, string $nome = "") {
         $this->email = $email;
         $this->senha = $senha;
         $this->nome = $nome;
     }
 
-    public function save():bool {
+    public function checkForDoubleEmail() : bool {
+        $conexao = new MySQL();
+
+        $sql = "SELECT u.Email FROM usuario u WHERE u.Email = '{$this->email}'";
+        
+        $resultados = $conexao->consulta($sql);
+
+        if(sizeof($resultados) >= 1) return true;
+
+        return false;
+    }
+
+    public function save() : bool {
         $conexao = new MySQL();
 
         $this->senha = password_hash($this->senha, PASSWORD_BCRYPT); 
@@ -27,10 +39,10 @@ class Usuario {
         return $conexao->executa($sql);
     }
 
-    public function authenticate():bool{
+    public function authenticate() : bool {
         $conexao = new MySQL();
 
-        $sql = "SELECT idUsuario,senha FROM usuario WHERE email = '{$this->email}'";
+        $sql = "SELECT idUsuario, senha, email, nome FROM usuario WHERE email = '{$this->email}'";
 
         $resultados = $conexao->consulta($sql);
 
@@ -39,6 +51,7 @@ class Usuario {
 
             $_SESSION['idUsuario'] = $resultados[0]['idUsuario'];
             $_SESSION['email'] = $resultados[0]['email'];
+            $this->nome = $resultados[0]["nome"];
 
             return true;
         }

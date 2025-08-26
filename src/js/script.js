@@ -1,4 +1,4 @@
-// Mostrar a senha
+// Mostrar Senha
 let checkboxAlternar = document.getElementById("alternar");
 checkboxAlternar.checked = false; // Mudando o estado dela pq começa com true
 

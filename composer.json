@@ -1,13 +1,13 @@
 {
-    "name": "arthur.lassem/trabalho2tri-1",
+    "name": "arthur.lassem/trabalho2tri",
     "autoload": {
         "psr-4": {
-            "": "src/classes/"
+            "": "src/Classes/"
         }
     },
     "authors": [
         {
-            "name": "Arthur Lassem, Mateus Bino"
+            "name": "Arthur Lassem e Mateus Bino"
         }
     ],
     "require": {}

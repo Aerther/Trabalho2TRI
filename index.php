@@ -3,10 +3,10 @@
 if(isset($_POST['envio'])) {
     require_once __DIR__."/vendor/autoload.php";
 
-    $user = new Usuario($_POST['email'], $_POST['senha'], "Jose");
+    $user = new Usuario($_POST['email'], $_POST['senha']);
 
     if($user->authenticate()) {
-        header("location: restrita.php");
+        header("location: restrita.php?page=listagem");
     } else {
         header("location: index.php");
     }
@@ -30,7 +30,7 @@ if(isset($_POST['envio'])) {
     <div id="container">
         <form action="index.php" method="post">
             <section>
-                <h2>Login</h2>
+                <h2>Página de Login</h2>
             </section>
 
             <section>

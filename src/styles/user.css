@@ -1,0 +1,72 @@
+body {
+    height: 100vh;
+    width: 100vw;
+
+    overflow-x: hidden;
+}
+
+#container {
+    height: 100%;
+    width: 100%;
+
+    display: grid;
+    grid-template-columns: 100%;
+    grid-template-rows: 150px 1fr;
+}
+
+nav {
+    border: 1px solid;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+nav > div, nav > h1 {
+    height: 50%;
+}
+
+nav > div > a {
+    font-size: 18px;
+    border: 1px solid;
+
+    padding: 5px;
+}
+
+main {
+    display: grid;
+    grid-template-columns: 50px 1fr 50px;
+    grid-template-rows: 100%;
+}
+
+.mostrarlivro {
+    width: 100%;
+
+    padding: 20px 20px;
+
+    font-size: 18px;
+
+    border: 1px solid;
+
+    margin-bottom: 8px;
+
+    box-shadow: 0 3px 5px black;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+a {
+    text-decoration: none;
+    
+}
+
+a:visited {
+    
+}
+
+img {
+    width: 40px;
+    aspect-ratio: 1/1;
+}
