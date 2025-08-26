@@ -25,19 +25,30 @@ $livros_favoritos = Livro::getLivrosFavoritos();
 </head>
 <body>
     <div id="container">
-        <nav>
-            <h1>Zmaaon</h1>
+        <header>
+            <h2>Zmaaon, tudo de Z a A</h2>
+        </header>
 
-            <div>
-                <a href="restrita.php?page=favoritos"> favoritos</a>
-                <a href="restrita.php?page=listagem"> lista de livros</a>
+        <nav>
+            <div class="navlinks">
+                <?php
+
+                if($_GET["page"] == "listagem") {
+                    echo "<a href='restrita.php?page=listagem' class='selecionado'> Lista de livros</a>";
+                    echo "<a href='restrita.php?page=favoritos' class='no-selecionado'> Favoritos</a>";
+                } else {
+                    echo "<a href='restrita.php?page=listagem' class='no-selecionado'> Lista de livros</a>";
+                    echo "<a href='restrita.php?page=favoritos' class='selecionado'> Favoritos</a>";
+                }
+
+                ?>
             </div>
         </nav>
 
         <main>
             <div></div>
 
-            <div>
+            <div id="listagemlivros">
                 <?php
 
                 if($_GET["page"] == "listagem") {
